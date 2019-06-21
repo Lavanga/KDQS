@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "940075467212",
+    "firebase_url": "https://kdqs-1986d.firebaseio.com",
+    "project_id": "kdqs-1986d",
+    "storage_bucket": "kdqs-1986d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940075467212:android:704fe1bdd817ee06",
+        "android_client_info": {
+          "package_name": "com.example.kdqs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940075467212-uruotnqhs4jsuiug20e6tt5d901ghbs1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn6wdl7BVos13WOSiYRvunK4F09GMMstI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940075467212-uruotnqhs4jsuiug20e6tt5d901ghbs1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
