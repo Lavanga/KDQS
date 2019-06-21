@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,7 +28,9 @@ import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,13 +38,20 @@ public class MainActivity extends AppCompatActivity {
 
     Bitmap bitmap;
     String currentPhotoPath;
+    String imageText;
 
+    Button button;
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button);
+         button = findViewById(R.id.button);
+
+        textView = findViewById(R.id.textView);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,10 +116,10 @@ public class MainActivity extends AppCompatActivity {
                 if (bitmap != null) {
                     Log.e("test", "file loaded successfully");
                     FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
-                    // for on-device processing
+                    // uncomment for on-device processing
                     FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
 
-                    // for cloud processing
+                    // uncomment for cloud processing
                     //FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
 
                     Task<FirebaseVisionText> result =
@@ -118,7 +128,46 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(FirebaseVisionText firebaseVisionText) {
                                             Log.e("test", "image to text  successfully");
-                                            Log.e("test", "ssssssssssss" + firebaseVisionText.getText());
+                                            imageText=firebaseVisionText.getText();
+                                            Log.e("test", "Image to Text" + imageText);
+
+                                           // List<Integer> myIntList ;
+
+                                            List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
+
+                                            boolean add=false;
+                                            boolean sub=false;
+                                            boolean mul=false;
+                                            boolean div=false;
+                                            int n=0;
+                                            int listSize=myIntList.size();
+
+                                            for(String x:myIntList){Log.e("test", "loop" + x);}
+
+                                            if(Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                                 add=true;
+                                                Log.e("test", "operation +" );
+                                            }else if(Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                                sub=true;
+                                                Log.e("test", "operation -" );
+                                            }else if(Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                                mul=true;
+                                                Log.e("test", "operation *" );
+                                            }else if(Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                                div=true;
+                                                Log.e("test", "operation /" );
+                                            }
+
+                                            int nextVlaue=0;
+                                            if(add){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))+ Integer.valueOf(myIntList.get(myIntList.size()-1));}
+                                            if(sub){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))- Integer.valueOf(myIntList.get(myIntList.size()-1));}
+                                            if(mul){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))* Integer.valueOf(myIntList.get(myIntList.size()-1));}
+                                            if(div){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))/ Integer.valueOf(myIntList.get(myIntList.size()-1));}
+
+                                            Log.e("test", "next value is " + nextVlaue);
+
+                                            textView.setText("The next value is - "+nextVlaue);
+
                                         }
                                     })
                                     .addOnFailureListener(
