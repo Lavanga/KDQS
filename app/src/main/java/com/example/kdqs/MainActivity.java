@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,15 +42,23 @@ public class MainActivity extends AppCompatActivity {
     String imageText;
 
     Button button;
+    Button buttonTest;
 
     TextView textView;
+
+
+    EditText editText;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         button = findViewById(R.id.button);
-
+        button = findViewById(R.id.button);
+        buttonTest = findViewById(R.id.buttonTest);
+        editText= (EditText) findViewById(R.id.inputText);
         textView = findViewById(R.id.textView);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +69,55 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                                        imageText=editText.getText().toString();
+                                        Log.e("test", "Image to Text" + imageText);
+
+                                        List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
+
+                                        boolean add=false;
+                                        boolean sub=false;
+                                        boolean mul=false;
+                                        boolean div=false;
+                                        int n=0;
+
+                                        int listSize=myIntList.size();
+
+                                        for(String x:myIntList){Log.e("test", "loop" + x);}
+
+                                        if(Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                            add=true;
+                                            Log.e("test", "operation +" );
+                                        }else if(Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                            sub=true;
+                                            Log.e("test", "operation -" );
+                                        }else if(Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                            mul=true;
+                                            Log.e("test", "operation *" );
+                                        }else if(Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n+1) ) == Integer.valueOf(myIntList.get(n+2))){
+                                            div=true;
+                                            Log.e("test", "operation /" );
+                                        }
+
+                                        int nextVlaue=0;
+                                        if(add){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))+ Integer.valueOf(myIntList.get(myIntList.size()-1));}
+                                        if(sub){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))- Integer.valueOf(myIntList.get(myIntList.size()-1));}
+                                        if(mul){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))* Integer.valueOf(myIntList.get(myIntList.size()-1));}
+                                        if(div){nextVlaue=Integer.valueOf(myIntList.get(myIntList.size()-2))/ Integer.valueOf(myIntList.get(myIntList.size()-1));}
+
+                                        Log.e("test", "next value is " + nextVlaue);
+
+                                        textView.setText("The next value is - "+nextVlaue);
+
+            }
+
+        });
+
     }
 
 
@@ -79,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
         Log.e("test", "path for file--" + currentPhotoPath);
         return image;
     }
-
 
 
 
@@ -131,8 +188,6 @@ public class MainActivity extends AppCompatActivity {
                                             imageText=firebaseVisionText.getText();
                                             Log.e("test", "Image to Text" + imageText);
 
-                                           // List<Integer> myIntList ;
-
                                             List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
 
                                             boolean add=false;
@@ -140,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                                             boolean mul=false;
                                             boolean div=false;
                                             int n=0;
+
                                             int listSize=myIntList.size();
 
                                             for(String x:myIntList){Log.e("test", "loop" + x);}
@@ -183,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
             error.printStackTrace();
         }
     }
+
+
 
 
 }
