@@ -13,6 +13,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,7 +29,9 @@ import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,13 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
     Bitmap bitmap;
     String currentPhotoPath;
+    String imageText;
+
+    Button button;
+    Button buttonTest;
+
+    TextView textView;
+
+
+    EditText editText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button);
+        button = findViewById(R.id.button);
+        buttonTest = findViewById(R.id.buttonTest);
+        editText = (EditText) findViewById(R.id.inputText);
+        textView = findViewById(R.id.textView);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +67,182 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                imageText = editText.getText().toString();
+                Log.e("test", "Image to Text" + imageText);
+                textView.setText("The number pattern is :" + imageText );
+
+                List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
+
+                boolean add = false;
+                boolean sub = false;
+                boolean mul = false;
+                boolean div = false;
+                boolean cons = false;
+                boolean consMul = false;
+                boolean consDiv = false;
+                boolean sqr = false;
+
+                boolean add1 = false;
+                boolean sub1 = false;
+                boolean mul1 = false;
+                boolean div1 = false;
+                boolean cons1 = false;
+                boolean consMul1 = false;
+                boolean consDiv1 = false;
+                boolean sqr1 = false;
+
+                boolean add2 = false;
+                boolean sub2 = false;
+                boolean mul2 = false;
+                boolean div2 = false;
+                boolean cons2 = false;
+                boolean consMul2 = false;
+                boolean consDiv2 = false;
+                boolean sqr2 = false;
+
+                int n = 0;
+                int cosst = 0;
+                int cosst1 = 0;
+
+                int listSize = myIntList.size();
+
+                for (String x : myIntList) {
+                    Log.e("test", "loop" + x);
+                }
+
+                if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    add1 = true;
+                    Log.e("test", "operation +");
+                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    sub1 = true;
+                    Log.e("test", "operation -");
+                } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    mul1 = true;
+                    Log.e("test", "operation *");
+                } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    div1 = true;
+                    Log.e("test", "operation /");
+                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                    cons1 = true;
+                    cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                    //Log.e("test", "operation cons value " +cosst );
+                    Log.e("test", "operation constant addition");
+                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) != (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                   for (int i=2; i<=12; i++) {
+                       if (((Integer.valueOf(myIntList.get(n)) * i) == Integer.valueOf(myIntList.get(n + 1)))){
+                           consMul1 = true;
+                           cosst1 = i;
+                           //Log.e("test", "operation cons value " +cosst );
+                           Log.e("test", "operation constant multiplication");
+                       } else if (((Integer.valueOf(myIntList.get(n)) / i) == Integer.valueOf(myIntList.get(n + 1)))){
+                           consDiv1 = true;
+                           cosst1 = i;
+                           Log.e("test", "operation cons value " +cosst1 );
+                           Log.e("test", "operation constant division");
+                       }
+
+                   }
+
+                }
+
+                n = 1;
+                if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    add2 = true;
+                    Log.e("test", "operation +");
+                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    sub2 = true;
+                    Log.e("test", "operation -");
+                } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    mul2 = true;
+                    Log.e("test", "operation *");
+                } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                    div2 = true;
+                    Log.e("test", "operation /");
+                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                    cons2 = true;
+                    cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                    //Log.e("test", "operation cons value " +cosst );
+                    Log.e("test", "operation cons");
+                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) != (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                    for (int i=2; i<=12; i++) {
+                        if (((Integer.valueOf(myIntList.get(n + 1)) * i) == Integer.valueOf(myIntList.get(n + 2)))){
+                            consMul2 = true;
+                            cosst1 = i;
+                            //Log.e("test", "operation cons value " +cosst );
+                            Log.e("test", "operation constant multiplication");
+                        } else if (((Integer.valueOf(myIntList.get(n + 1)) / i) == Integer.valueOf(myIntList.get(n + 2)))){
+                            consDiv2 = true;
+                            cosst1 = i;
+                            Log.e("test", "operation cons value " +cosst1 );
+                            Log.e("test", "operation constant division");
+                        }
+
+                    }
+
+                }
+
+
+                if (add1 = add2) {
+                    add = true;
+                }
+                if (sub1 = sub2) {
+                    sub = true;
+                }
+                if (mul1 = mul2) {
+                    mul = true;
+                }
+                if (div1 = div2) {
+                    div = true;
+                }
+                if (cons1 = cons2) {
+                    cons = true;
+                }
+                if (consMul1 = consMul2) {
+                    consMul = true;
+                }
+                if (consDiv1 = consDiv2) {
+                    consDiv = true;
+                }
+
+
+
+                int nextVlaue = 0;
+                if (add) {
+                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                }
+                if (sub) {
+                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                }
+                if (mul) {
+                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                }
+                if (div) {
+                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                }
+                if (cons) {
+                    nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
+                }
+                if (consMul) {
+                    nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) * cosst1  );
+                }
+                if (consDiv) {
+                    nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) / cosst1  );
+                }
+
+                Log.e("test", "next value is " + nextVlaue);
+
+                textView.setText("The next value is : " + nextVlaue);
+
+            }
+
+        });
+
     }
 
 
@@ -69,8 +262,6 @@ public class MainActivity extends AppCompatActivity {
         Log.e("test", "path for file--" + currentPhotoPath);
         return image;
     }
-
-
 
 
     private void dispatchTakePictureIntent() {
@@ -106,10 +297,10 @@ public class MainActivity extends AppCompatActivity {
                 if (bitmap != null) {
                     Log.e("test", "file loaded successfully");
                     FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
-                    // for on-device processing
+                    // uncomment for on-device processing
                     FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
 
-                    // for cloud processing
+                    // uncomment for cloud processing
                     //FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
 
                     Task<FirebaseVisionText> result =
@@ -118,7 +309,114 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(FirebaseVisionText firebaseVisionText) {
                                             Log.e("test", "image to text  successfully");
-                                            Log.e("test", "ssssssssssss" + firebaseVisionText.getText());
+                                            imageText = firebaseVisionText.getText();
+                                            Log.e("test", "Image to Text = " + imageText);
+
+                                            List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
+
+                                            boolean add = false;
+                                            boolean sub = false;
+                                            boolean mul = false;
+                                            boolean div = false;
+                                            boolean cons = false;
+
+                                            boolean add1 = false;
+                                            boolean sub1 = false;
+                                            boolean mul1 = false;
+                                            boolean div1 = false;
+                                            boolean cons1 = false;
+
+                                            boolean add2 = false;
+                                            boolean sub2 = false;
+                                            boolean mul2 = false;
+                                            boolean div2 = false;
+                                            boolean cons2 = false;
+
+                                            int n = 0;
+                                            int cosst = 0;
+
+                                            int listSize = myIntList.size();
+
+                                            for (String x : myIntList) {
+                                                Log.e("test", "loop" + x);
+                                            }
+
+                                            if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                add = true;
+                                                Log.e("test", "operation +");
+                                            } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                sub = true;
+                                                Log.e("test", "operation -");
+                                            } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                mul = true;
+                                                Log.e("test", "operation *");
+                                            } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                div = true;
+                                                Log.e("test", "operation /");
+                                            } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                                                cons = true;
+                                                cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                                                Log.e("test", "operation cons");
+                                            }
+
+                                            n = 1;
+                                            if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                add2 = true;
+                                                Log.e("test", "operation +");
+                                            } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                sub2 = true;
+                                                Log.e("test", "operation -");
+                                            } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                mul2 = true;
+                                                Log.e("test", "operation *");
+                                            } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                div2 = true;
+                                                Log.e("test", "operation /");
+                                            } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                                                cons2 = true;
+                                                cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                                                //Log.e("test", "operation cons value " +cosst );
+                                                Log.e("test", "operation cons");
+                                            }
+
+
+                                            if (add1 = add2) {
+                                                add = true;
+                                            }
+                                            if (sub1 = sub2) {
+                                                sub = true;
+                                            }
+                                            if (mul1 = mul2) {
+                                                mul = true;
+                                            }
+                                            if (div1 = div2) {
+                                                div = true;
+                                            }
+                                            if (cons1 = cons2) {
+                                                cons = true;
+                                            }
+
+                                            int nextVlaue = 0;
+                                            if (add) {
+                                                nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                            }
+                                            if (sub) {
+                                                nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                            }
+                                            if (mul) {
+                                                nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                            }
+                                            if (div) {
+                                                nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                            }
+                                            if (cons) {
+                                                nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
+                                            }
+
+                                            Log.e("test", "next value is " + nextVlaue);
+
+                                            textView.setText("The next value is : " + nextVlaue);
+
                                         }
                                     })
                                     .addOnFailureListener(
