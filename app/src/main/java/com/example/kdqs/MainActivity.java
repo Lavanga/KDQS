@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     Button buttonTest;
 
+    Button buttonCamera;
+    Button buttonKeyboard;
+    Button buttonClear;
+
     TextView textView;
 
 
@@ -54,10 +60,49 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         button = findViewById(R.id.button);
         buttonTest = findViewById(R.id.buttonTest);
+        buttonCamera = findViewById(R.id.button2);
+        buttonKeyboard = findViewById(R.id.button3);
+        buttonClear = findViewById(R.id.button4);
         editText = (EditText) findViewById(R.id.inputText);
         textView = findViewById(R.id.textView);
+        textView.setText("");
+
+
+        button.setVisibility(View.INVISIBLE);
+        buttonTest.setVisibility(View.INVISIBLE);
+        editText.setVisibility(View.INVISIBLE);
+        buttonClear.setVisibility(View.INVISIBLE);
+        //textView.setVisibility(View.INVISIBLE);
+
+
+        buttonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                button.setVisibility(View.VISIBLE);
+                buttonTest.setVisibility(View.INVISIBLE);
+                buttonClear.setVisibility(View.INVISIBLE);
+                editText.setVisibility(View.INVISIBLE);
+                textView.setVisibility(View.VISIBLE);
+                textView.setText("");
+
+
+            }
+        });
+
+        buttonKeyboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                button.setVisibility(View.INVISIBLE);
+                buttonTest.setVisibility(View.VISIBLE);
+                buttonClear.setVisibility(View.VISIBLE);
+                editText.setVisibility(View.VISIBLE);
+                textView.setVisibility(View.VISIBLE);
+                textView.setText("");
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +113,21 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                editText.setText("");
+                textView.setText("");
+            }
+        });
+
         buttonTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
+                InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
                 imageText = editText.getText().toString();
                 Log.e("test", "Image to Text" + imageText);
 
@@ -360,6 +415,7 @@ public class MainActivity extends AppCompatActivity {
                                             Log.e("test", "next value is " + nextVlaue);
 
                                             textView.setText("The next value is : " + nextVlaue);
+
 
                                         }
                                     })
