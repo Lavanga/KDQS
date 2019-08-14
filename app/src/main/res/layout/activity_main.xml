@@ -71,7 +71,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/btn_default_small"
-        android:text="Camera"
+        android:text="Get Image"
         android:textColor="#03A9F4"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button"
@@ -120,5 +120,18 @@
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="74dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Get from Gallery"
+        android:textColor="#3F51B5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
