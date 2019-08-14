@@ -7,6 +7,7 @@ import androidx.core.content.FileProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         textView.setText("");
 
-
         button.setVisibility(View.INVISIBLE);
         buttonTest.setVisibility(View.INVISIBLE);
         editText.setVisibility(View.INVISIBLE);
@@ -122,10 +123,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        // predict next
         buttonTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                String inputText = editText.getText().toString();
+
+                if (inputText == "") {
+                    Toast.makeText(getApplicationContext(),"Input is Empty", Toast.LENGTH_SHORT).show();
+                }
+                int countCommas = 0;
+                int countNumbers = 0;
+                for (int i = 0; i < inputText.length(); i++) {
+                    if (inputText.charAt(i) == ',') countCommas++;
+                }
+                String words[] = inputText.split(",");
+
+                if(countCommas==3 & words.length==4){
                 InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
                 imageText = editText.getText().toString();
@@ -237,6 +253,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("test", "next value is " + nextVlaue);
 
                 textView.setText("The next value is : " + nextVlaue);
+            }else{
+                    Toast.makeText(getApplicationContext(),"Input format ERROR - Enter 4 numbers separated by . Eg:- 2,4,6,10 ", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
