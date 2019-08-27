@@ -39,7 +39,7 @@ public class QuesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Random r = new Random();
-                int ranNum = r.nextInt(99 - 0) + 1;
+                int ranNum = r.nextInt(19 - 0) + 1;
                 int ranop = r.nextInt(5 ) ;
                 String question = "";
                 String operation = "";
@@ -48,29 +48,50 @@ public class QuesActivity extends AppCompatActivity {
                 String fresult="";
 
                 if (ranop==0) {
-                      question= ranNum+","+(ranNum+ranNum)+","+(ranNum+ranNum+ranNum)+","+(ranNum+ranNum+ranNum+ranNum)+",";
-                      result=ranNum+ranNum+ranNum+ranNum+ranNum;
+
+                    ranNum = r.nextInt(19 - 0) + 1;
+                    int ranNum2=0;
+                        ranNum2 = r.nextInt(19 - 0) + 1;
+                      question= ranNum+","+(ranNum2)+","+(ranNum+ranNum2)+","+((ranNum+ranNum2)+ranNum2)+",";
+                      result=((ranNum+ranNum2)+((ranNum+ranNum2)+ranNum2));
                     operation = "Addtion";
                 }
                 if (ranop==1) {
-                     question= ranNum+","+(ranNum+ranNum)+","+(ranNum+ranNum+ranNum)+","+(ranNum+ranNum+ranNum+ranNum)+",";
-                    result=ranNum+ranNum+ranNum+ranNum+ranNum;
-                    operation = "Addtion";
+                    ranNum = r.nextInt(300 - 100) + 1;
+                    int ranNum2=0;
+
+                    ranNum2 = r.nextInt(19 - 0) + 1;
+
+                    question= ranNum+","+(ranNum2)+","+(ranNum-ranNum2)+","+(ranNum2-(ranNum-ranNum2))+",";
+                    result=((ranNum-ranNum2)-((ranNum-ranNum2)-ranNum2));
+                    operation = "subtraction";
                 }
                 if (ranop==2) {
-                     question= ranNum+","+(ranNum+ranNum)+","+(ranNum+ranNum+ranNum)+","+(ranNum+ranNum+ranNum+ranNum)+",";
-                    result=ranNum+ranNum+ranNum+ranNum+ranNum;
-                    operation = "Addtion";
+                    ranNum = r.nextInt(19 - 0) + 1;
+                    int ranNum2=0;
+
+                    ranNum2 = r.nextInt(19 - 0) + 1;
+
+                    question= ranNum+","+(ranNum*ranNum2)+","+((ranNum*ranNum2)*ranNum2)+","+(((ranNum*ranNum2)*ranNum2)*ranNum2)+",";
+                    result=((((ranNum*ranNum2)*ranNum2)*ranNum2)*ranNum2);
+                    operation = "Multiplication";
                 }
                 if (ranop==3) {
-                     question= ranNum+","+(ranNum+ranNum)+","+(ranNum+ranNum+ranNum)+","+(ranNum+ranNum+ranNum+ranNum)+",";
-                    result=ranNum+ranNum+ranNum+ranNum+ranNum;
-                    operation = "Addtion";
+                    ranNum = r.nextInt(300 - 100) + 1;
+                    int ranNum2=0;
+
+                    ranNum2 = r.nextInt(19 - 0) + 1;
+
+                    question= ranNum+","+(ranNum/ranNum2)+","+((ranNum/ranNum2)/ranNum2)+","+(((ranNum/ranNum2)/ranNum2)/ranNum2)+",";
+                    result=((((ranNum/ranNum2)/ranNum2)/ranNum2)/ranNum2);
+                    operation = "Division";
                 }
                 if (ranop==4) {
-                     question= ranNum+","+(ranNum+ranNum)+","+(ranNum+ranNum+ranNum)+","+(ranNum+ranNum+ranNum+ranNum)+",";
-                    result=ranNum+ranNum+ranNum+ranNum+ranNum;
-                    operation = "Addtion";
+
+                    int constant = r.nextInt(10);
+                     question= ranNum+","+(ranNum+constant)+","+((ranNum+constant)+constant)+","+(((ranNum+constant)+constant)+constant)+",";
+                    result=(((ranNum+constant)+constant)+constant)+constant;
+                    operation = "Constant";
                 }
 
                 textViewGQ.setText(question);
