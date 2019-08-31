@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonClear;
 
     TextView textView;
-
+    TextView textView2;
 
     EditText editText;
 
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.inputText);
         textView = findViewById(R.id.textView);
         textView.setText("");
+        textView2 = findViewById(R.id.textView3);
+        textView2.setText("");
 
         button.setVisibility(View.INVISIBLE);
         buttonGall.setVisibility(View.INVISIBLE);
@@ -166,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
-
+                    String Opera="";
                     boolean add = false;
                     boolean sub = false;
                     boolean mul = false;
@@ -196,18 +198,23 @@ public class MainActivity extends AppCompatActivity {
 
                     if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         add1 = true;
+                        Opera ="Addtion";
                         Log.e("test", "operation +");
                     } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         sub1 = true;
+                        Opera ="Subtraction";
                         Log.e("test", "operation -");
                     } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         mul1 = true;
+                        Opera ="Multiplication";
                         Log.e("test", "operation *");
                     } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         div1 = true;
+                        Opera ="Division";
                         Log.e("test", "operation /");
                     } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
                         cons1 = true;
+                        Opera ="Constant";
                         cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
                         //Log.e("test", "operation cons value " +cosst );
                         Log.e("test", "operation cons");
@@ -216,18 +223,23 @@ public class MainActivity extends AppCompatActivity {
                     n = 1;
                     if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         add2 = true;
+                        Opera ="Addtion";
                         Log.e("test", "operation +");
                     } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         sub2 = true;
+                        Opera ="Subtraction";
                         Log.e("test", "operation -");
                     } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         mul2 = true;
+                        Opera ="Multiplication";
                         Log.e("test", "operation *");
                     } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                         div2 = true;
+                        Opera ="Division";
                         Log.e("test", "operation /");
                     } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
                         cons2 = true;
+                        Opera ="Constant";
                         cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
                         //Log.e("test", "operation cons value " +cosst );
                         Log.e("test", "operation cons");
@@ -271,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("test", "next value is " + nextVlaue);
 
                     textView.setText("The next value is : " + nextVlaue);
+                    textView2.setText("Operation is : " + Opera);
                 } else {
                     Toast.makeText(getApplicationContext(), "Input format ERROR - Enter 4 numbers separated by . Eg:- 2,4,6,10 ", Toast.LENGTH_SHORT).show();
                 }
@@ -394,6 +407,8 @@ public class MainActivity extends AppCompatActivity {
 
                                                 List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
 
+                                                String Opera="";
+
                                                 boolean add = false;
                                                 boolean sub = false;
                                                 boolean mul = false;
@@ -423,18 +438,23 @@ public class MainActivity extends AppCompatActivity {
 
                                                 if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     add = true;
+                                                    Opera ="Addtion";
                                                     Log.e("test", "operation +");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     sub = true;
+                                                    Opera ="Subtraction";
                                                     Log.e("test", "operation -");
                                                 } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     mul = true;
+                                                    Opera ="Multiplication";
                                                     Log.e("test", "operation *");
                                                 } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     div = true;
+                                                    Opera ="Division";
                                                     Log.e("test", "operation /");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
                                                     cons = true;
+                                                    Opera ="Constant";
                                                     cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
                                                     Log.e("test", "operation cons");
                                                 }
@@ -442,18 +462,23 @@ public class MainActivity extends AppCompatActivity {
                                                 n = 1;
                                                 if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     add2 = true;
+                                                    Opera ="Addtion";
                                                     Log.e("test", "operation +");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     sub2 = true;
+                                                    Opera ="Subtraction";
                                                     Log.e("test", "operation -");
                                                 } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     mul2 = true;
+                                                    Opera ="Multiplication";
                                                     Log.e("test", "operation *");
                                                 } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     div2 = true;
+                                                    Opera ="Division";
                                                     Log.e("test", "operation /");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
                                                     cons2 = true;
+                                                    Opera ="Constant";
                                                     cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
                                                     //Log.e("test", "operation cons value " +cosst );
                                                     Log.e("test", "operation cons");
@@ -496,6 +521,7 @@ public class MainActivity extends AppCompatActivity {
                                                 Log.e("test", "next value is " + nextVlaue);
 
                                                 textView.setText("The next value is : " + nextVlaue);
+                                                textView2.setText("Operation is : " + Opera);
 
 
                                             } else {
@@ -558,6 +584,8 @@ public class MainActivity extends AppCompatActivity {
 
                                                 List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
 
+                                                String Opera="";
+
                                                 boolean add = false;
                                                 boolean sub = false;
                                                 boolean mul = false;
@@ -587,18 +615,23 @@ public class MainActivity extends AppCompatActivity {
 
                                                 if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     add = true;
+                                                    Opera ="Addtion";
                                                     Log.e("test", "operation +");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     sub = true;
+                                                    Opera ="Subtraction";
                                                     Log.e("test", "operation -");
                                                 } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     mul = true;
+                                                    Opera ="Multiplication";
                                                     Log.e("test", "operation *");
                                                 } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     div = true;
+                                                    Opera ="Division";
                                                     Log.e("test", "operation /");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
                                                     cons = true;
+                                                    Opera ="Constant";
                                                     cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
                                                     Log.e("test", "operation cons");
                                                 }
@@ -606,18 +639,23 @@ public class MainActivity extends AppCompatActivity {
                                                 n = 1;
                                                 if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     add2 = true;
+                                                    Opera ="Addtion";
                                                     Log.e("test", "operation +");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     sub2 = true;
+                                                    Opera ="Subtraction";
                                                     Log.e("test", "operation -");
                                                 } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     mul2 = true;
+                                                    Opera ="Multiplication";
                                                     Log.e("test", "operation *");
                                                 } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
                                                     div2 = true;
+                                                    Opera ="Division";
                                                     Log.e("test", "operation /");
                                                 } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
                                                     cons2 = true;
+                                                    Opera ="Constant";
                                                     cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
                                                     //Log.e("test", "operation cons value " +cosst );
                                                     Log.e("test", "operation cons");
@@ -660,6 +698,7 @@ public class MainActivity extends AppCompatActivity {
                                                 Log.e("test", "next value is " + nextVlaue);
 
                                                 textView.setText("The next value is : " + nextVlaue);
+                                                textView2.setText("Operation is : " + Opera);
 
 
                                             } else {
