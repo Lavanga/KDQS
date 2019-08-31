@@ -345,6 +345,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    // camera image part
     /// after camera intent
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -385,9 +387,9 @@ public class MainActivity extends AppCompatActivity {
                                             String words[] = imageText.split(",");
 
                                             if (countCommas == 3 & words.length == 4) {
-                                                InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
-                                                imageText = editText.getText().toString();
+                                                //InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                //imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
+                                                //imageText = editText.getText().toString();
                                                 Log.e("test", "Image to Text" + imageText);
 
                                                 List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
@@ -546,10 +548,12 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             String words[] = imageText.split(",");
 
+                                            Log.e("test", "WORD Count - " + countCommas);
+                                            Log.e("test", "countCommas - " + words.length);
                                             if (countCommas == 3 & words.length == 4) {
-                                                InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
-                                                imageText = editText.getText().toString();
+                                                //InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                //imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
+                                                //imageText = editText.getText().toString();
                                                 Log.e("test", "Image to Text" + imageText);
 
                                                 List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
