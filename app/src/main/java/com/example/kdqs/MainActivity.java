@@ -164,129 +164,152 @@ public class MainActivity extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
                     imageText = editText.getText().toString();
-                    Log.e("test", "Image to Text" + imageText);
+                    Log.e("test", "Image to Text = " + imageText);
 
 
                     List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
-                    String Opera="";
-                    boolean add = false;
-                    boolean sub = false;
-                    boolean mul = false;
-                    boolean div = false;
-                    boolean cons = false;
 
-                    boolean add1 = false;
-                    boolean sub1 = false;
-                    boolean mul1 = false;
-                    boolean div1 = false;
-                    boolean cons1 = false;
 
-                    boolean add2 = false;
-                    boolean sub2 = false;
-                    boolean mul2 = false;
-                    boolean div2 = false;
-                    boolean cons2 = false;
+                    boolean allIntergerCheck = true;
 
-                    int n = 0;
-                    int cosst = 0;
-
-                    int listSize = myIntList.size();
-
-                    for (String x : myIntList) {
-                        Log.e("test", "loop" + x);
-                    }
-
-                    if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        add1 = true;
-                        Opera ="Addtion";
-                        Log.e("test", "operation +");
-                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        sub1 = true;
-                        Opera ="Subtraction";
-                        Log.e("test", "operation -");
-                    } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        mul1 = true;
-                        Opera ="Multiplication";
-                        Log.e("test", "operation *");
-                    } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        div1 = true;
-                        Opera ="Division";
-                        Log.e("test", "operation /");
-                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
-                        cons1 = true;
-                        Opera ="Constant";
-                        cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
-                        //Log.e("test", "operation cons value " +cosst );
-                        Log.e("test", "operation cons");
-                    }
-
-                    n = 1;
-                    if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        add2 = true;
-                        Opera ="Addtion";
-                        Log.e("test", "operation +");
-                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        sub2 = true;
-                        Opera ="Subtraction";
-                        Log.e("test", "operation -");
-                    } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        mul2 = true;
-                        Opera ="Multiplication";
-                        Log.e("test", "operation *");
-                    } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                        div2 = true;
-                        Opera ="Division";
-                        Log.e("test", "operation /");
-                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
-                        cons2 = true;
-                        Opera ="Constant";
-                        cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
-                        //Log.e("test", "operation cons value " +cosst );
-                        Log.e("test", "operation cons");
+                    for (String strObject : myIntList) {
+                        if(isInteger(strObject)){
+                            allIntergerCheck = true;
+                        }else{
+                            allIntergerCheck = false;
+                            break;
+                        }
                     }
 
 
-                    if (add1 = add2) {
-                        add = true;
-                    }
-                    if (sub1 = sub2) {
-                        sub = true;
-                    }
-                    if (mul1 = mul2) {
-                        mul = true;
-                    }
-                    if (div1 = div2) {
-                        div = true;
-                    }
-                    if (cons1 = cons2) {
-                        cons = true;
+                    if (allIntergerCheck) {
+
+                        String Opera = "";
+                        boolean add = false;
+                        boolean sub = false;
+                        boolean mul = false;
+                        boolean div = false;
+                        boolean cons = false;
+
+                        boolean add1 = false;
+                        boolean sub1 = false;
+                        boolean mul1 = false;
+                        boolean div1 = false;
+                        boolean cons1 = false;
+
+                        boolean add2 = false;
+                        boolean sub2 = false;
+                        boolean mul2 = false;
+                        boolean div2 = false;
+                        boolean cons2 = false;
+
+                        int n = 0;
+                        int cosst = 0;
+
+                        int listSize = myIntList.size();
+
+                        for (String x : myIntList) {
+                            Log.e("test", "loop" + x);
+                        }
+
+                        if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            add1 = true;
+                            Opera = "Addtion";
+                            Log.e("test", "operation +");
+                        } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            sub1 = true;
+                            Opera = "Subtraction";
+                            Log.e("test", "operation -");
+                        } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            mul1 = true;
+                            Opera = "Multiplication";
+                            Log.e("test", "operation *");
+                        } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            div1 = true;
+                            Opera = "Division";
+                            Log.e("test", "operation /");
+                        } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                            cons1 = true;
+                            Opera = "Constant";
+                            cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                            //Log.e("test", "operation cons value " +cosst );
+                            Log.e("test", "operation cons");
+                        }
+
+                        n = 1;
+                        if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            add2 = true;
+                            Opera = "Addtion";
+                            Log.e("test", "operation +");
+                        } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            sub2 = true;
+                            Opera = "Subtraction";
+                            Log.e("test", "operation -");
+                        } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            mul2 = true;
+                            Opera = "Multiplication";
+                            Log.e("test", "operation *");
+                        } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                            div2 = true;
+                            Opera = "Division";
+                            Log.e("test", "operation /");
+                        } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                            cons2 = true;
+                            Opera = "Constant";
+                            cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                            //Log.e("test", "operation cons value " +cosst );
+                            Log.e("test", "operation cons");
+                        }
+
+
+                        if (add1 = add2) {
+                            add = true;
+                        }
+                        if (sub1 = sub2) {
+                            sub = true;
+                        }
+                        if (mul1 = mul2) {
+                            mul = true;
+                        }
+                        if (div1 = div2) {
+                            div = true;
+                        }
+                        if (cons1 = cons2) {
+                            cons = true;
+                        }
+
+
+                        int nextVlaue = 0;
+                        if (add) {
+                            nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                        }
+                        if (sub) {
+                            nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                        }
+                        if (mul) {
+                            nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                        }
+                        if (div) {
+                            nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                        }
+                        if (cons) {
+                            nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
+                        }
+
+                        Log.e("test", "next value is " + nextVlaue);
+
+                        textView.setText("The next value is : " + nextVlaue);
+                        textView2.setText("Operation is : " + Opera);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Input format ERROR - Can only contain Integer", Toast.LENGTH_SHORT).show();
                     }
 
 
-                    int nextVlaue = 0;
-                    if (add) {
-                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                    }
-                    if (sub) {
-                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                    }
-                    if (mul) {
-                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                    }
-                    if (div) {
-                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                    }
-                    if (cons) {
-                        nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
-                    }
-
-                    Log.e("test", "next value is " + nextVlaue);
-
-                    textView.setText("The next value is : " + nextVlaue);
-                    textView2.setText("Operation is : " + Opera);
                 } else {
                     Toast.makeText(getApplicationContext(), "Input format ERROR - Enter 4 numbers separated by . Eg:- 2,4,6,10 ", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
 
@@ -352,10 +375,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, GALLERY_REQUEST);
             }
         }
-
-
-
-
     }
 
 
@@ -403,126 +422,143 @@ public class MainActivity extends AppCompatActivity {
                                                 //InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                                                 //imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
                                                 //imageText = editText.getText().toString();
-                                                Log.e("test", "Image to Text" + imageText);
+                                                Log.e("test", "Image to Text = " + imageText);
 
                                                 List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
 
-                                                String Opera="";
+                                                String Opera = "";
 
-                                                boolean add = false;
-                                                boolean sub = false;
-                                                boolean mul = false;
-                                                boolean div = false;
-                                                boolean cons = false;
 
-                                                boolean add1 = false;
-                                                boolean sub1 = false;
-                                                boolean mul1 = false;
-                                                boolean div1 = false;
-                                                boolean cons1 = false;
+                                                boolean allIntergerCheck = true;
 
-                                                boolean add2 = false;
-                                                boolean sub2 = false;
-                                                boolean mul2 = false;
-                                                boolean div2 = false;
-                                                boolean cons2 = false;
-
-                                                int n = 0;
-                                                int cosst = 0;
-
-                                                int listSize = myIntList.size();
-
-                                                for (String x : myIntList) {
-                                                    Log.e("test", "loop" + x);
-                                                }
-
-                                                if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    add = true;
-                                                    Opera ="Addtion";
-                                                    Log.e("test", "operation +");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    sub = true;
-                                                    Opera ="Subtraction";
-                                                    Log.e("test", "operation -");
-                                                } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    mul = true;
-                                                    Opera ="Multiplication";
-                                                    Log.e("test", "operation *");
-                                                } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    div = true;
-                                                    Opera ="Division";
-                                                    Log.e("test", "operation /");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
-                                                    cons = true;
-                                                    Opera ="Constant";
-                                                    cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
-                                                    Log.e("test", "operation cons");
-                                                }
-
-                                                n = 1;
-                                                if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    add2 = true;
-                                                    Opera ="Addtion";
-                                                    Log.e("test", "operation +");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    sub2 = true;
-                                                    Opera ="Subtraction";
-                                                    Log.e("test", "operation -");
-                                                } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    mul2 = true;
-                                                    Opera ="Multiplication";
-                                                    Log.e("test", "operation *");
-                                                } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    div2 = true;
-                                                    Opera ="Division";
-                                                    Log.e("test", "operation /");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
-                                                    cons2 = true;
-                                                    Opera ="Constant";
-                                                    cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
-                                                    //Log.e("test", "operation cons value " +cosst );
-                                                    Log.e("test", "operation cons");
+                                                for (String strObject : myIntList) {
+                                                    if(isInteger(strObject)){
+                                                        allIntergerCheck = true;
+                                                    }else{
+                                                        allIntergerCheck = false;
+                                                        break;
+                                                    }
                                                 }
 
 
-                                                if (add1 = add2) {
-                                                    add = true;
-                                                }
-                                                if (sub1 = sub2) {
-                                                    sub = true;
-                                                }
-                                                if (mul1 = mul2) {
-                                                    mul = true;
-                                                }
-                                                if (div1 = div2) {
-                                                    div = true;
-                                                }
-                                                if (cons1 = cons2) {
-                                                    cons = true;
-                                                }
+                                                if (allIntergerCheck) {
 
-                                                int nextVlaue = 0;
-                                                if (add) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (sub) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (mul) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (div) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (cons) {
-                                                    nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
-                                                }
+                                                    boolean add = false;
+                                                    boolean sub = false;
+                                                    boolean mul = false;
+                                                    boolean div = false;
+                                                    boolean cons = false;
 
-                                                Log.e("test", "next value is " + nextVlaue);
+                                                    boolean add1 = false;
+                                                    boolean sub1 = false;
+                                                    boolean mul1 = false;
+                                                    boolean div1 = false;
+                                                    boolean cons1 = false;
 
-                                                textView.setText("The next value is : " + nextVlaue);
-                                                textView2.setText("Operation is : " + Opera);
+                                                    boolean add2 = false;
+                                                    boolean sub2 = false;
+                                                    boolean mul2 = false;
+                                                    boolean div2 = false;
+                                                    boolean cons2 = false;
 
+                                                    int n = 0;
+                                                    int cosst = 0;
+
+                                                    int listSize = myIntList.size();
+
+                                                    for (String x : myIntList) {
+                                                        Log.e("test", "loop" + x);
+                                                    }
+
+                                                    if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        add = true;
+                                                        Opera = "Addtion";
+                                                        Log.e("test", "operation +");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        sub = true;
+                                                        Opera = "Subtraction";
+                                                        Log.e("test", "operation -");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        mul = true;
+                                                        Opera = "Multiplication";
+                                                        Log.e("test", "operation *");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        div = true;
+                                                        Opera = "Division";
+                                                        Log.e("test", "operation /");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                                                        cons = true;
+                                                        Opera = "Constant";
+                                                        cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                                                        Log.e("test", "operation cons");
+                                                    }
+
+                                                    n = 1;
+                                                    if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        add2 = true;
+                                                        Opera = "Addtion";
+                                                        Log.e("test", "operation +");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        sub2 = true;
+                                                        Opera = "Subtraction";
+                                                        Log.e("test", "operation -");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        mul2 = true;
+                                                        Opera = "Multiplication";
+                                                        Log.e("test", "operation *");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        div2 = true;
+                                                        Opera = "Division";
+                                                        Log.e("test", "operation /");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                                                        cons2 = true;
+                                                        Opera = "Constant";
+                                                        cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                                                        //Log.e("test", "operation cons value " +cosst );
+                                                        Log.e("test", "operation cons");
+                                                    }
+
+
+                                                    if (add1 = add2) {
+                                                        add = true;
+                                                    }
+                                                    if (sub1 = sub2) {
+                                                        sub = true;
+                                                    }
+                                                    if (mul1 = mul2) {
+                                                        mul = true;
+                                                    }
+                                                    if (div1 = div2) {
+                                                        div = true;
+                                                    }
+                                                    if (cons1 = cons2) {
+                                                        cons = true;
+                                                    }
+
+                                                    int nextVlaue = 0;
+                                                    if (add) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (sub) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (mul) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (div) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (cons) {
+                                                        nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
+                                                    }
+
+                                                    Log.e("test", "next value is " + nextVlaue);
+
+                                                    textView.setText("The next value is : " + nextVlaue);
+                                                    textView2.setText("Operation is : " + Opera);
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), "Input format ERROR - Can only contain Integer", Toast.LENGTH_SHORT).show();
+                                                }
 
                                             } else {
                                                 Toast.makeText(getApplicationContext(), "Input format ERROR - Enter 4 numbers separated by . Eg:- 2,4,6,10 ", Toast.LENGTH_SHORT).show();
@@ -538,7 +574,7 @@ public class MainActivity extends AppCompatActivity {
                                             });
                 }
             }
-
+// gallary code
             if (requestCode == GALLERY_REQUEST) {
                 Uri selectedImage = intent.getData();
 
@@ -574,132 +610,148 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             String words[] = imageText.split(",");
 
-                                            Log.e("test", "WORD Count - " + countCommas);
-                                            Log.e("test", "countCommas - " + words.length);
+                                            Log.e("test", "countCommas - " + countCommas);
+                                            Log.e("test", "WORD Count - " + words.length);
                                             if (countCommas == 3 & words.length == 4) {
                                                 //InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                                                 //imm.hideSoftInputFromWindow(getCurrentFocus().getApplicationWindowToken(), 0);
                                                 //imageText = editText.getText().toString();
-                                                Log.e("test", "Image to Text" + imageText);
+                                                Log.e("test", "Image to Text = " + imageText);
 
                                                 List<String> myIntList = Arrays.asList(imageText.split("\\s*,\\s*"));
 
-                                                String Opera="";
+                                                boolean allIntergerCheck = true;
 
-                                                boolean add = false;
-                                                boolean sub = false;
-                                                boolean mul = false;
-                                                boolean div = false;
-                                                boolean cons = false;
-
-                                                boolean add1 = false;
-                                                boolean sub1 = false;
-                                                boolean mul1 = false;
-                                                boolean div1 = false;
-                                                boolean cons1 = false;
-
-                                                boolean add2 = false;
-                                                boolean sub2 = false;
-                                                boolean mul2 = false;
-                                                boolean div2 = false;
-                                                boolean cons2 = false;
-
-                                                int n = 0;
-                                                int cosst = 0;
-
-                                                int listSize = myIntList.size();
-
-                                                for (String x : myIntList) {
-                                                    Log.e("test", "loop" + x);
-                                                }
-
-                                                if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    add = true;
-                                                    Opera ="Addtion";
-                                                    Log.e("test", "operation +");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    sub = true;
-                                                    Opera ="Subtraction";
-                                                    Log.e("test", "operation -");
-                                                } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    mul = true;
-                                                    Opera ="Multiplication";
-                                                    Log.e("test", "operation *");
-                                                } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    div = true;
-                                                    Opera ="Division";
-                                                    Log.e("test", "operation /");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
-                                                    cons = true;
-                                                    Opera ="Constant";
-                                                    cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
-                                                    Log.e("test", "operation cons");
-                                                }
-
-                                                n = 1;
-                                                if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    add2 = true;
-                                                    Opera ="Addtion";
-                                                    Log.e("test", "operation +");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    sub2 = true;
-                                                    Opera ="Subtraction";
-                                                    Log.e("test", "operation -");
-                                                } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    mul2 = true;
-                                                    Opera ="Multiplication";
-                                                    Log.e("test", "operation *");
-                                                } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
-                                                    div2 = true;
-                                                    Opera ="Division";
-                                                    Log.e("test", "operation /");
-                                                } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
-                                                    cons2 = true;
-                                                    Opera ="Constant";
-                                                    cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
-                                                    //Log.e("test", "operation cons value " +cosst );
-                                                    Log.e("test", "operation cons");
+                                                for (String strObject : myIntList) {
+                                                    if(isInteger(strObject)){
+                                                        allIntergerCheck = true;
+                                                    }else{
+                                                        allIntergerCheck = false;
+                                                        break;
+                                                    }
                                                 }
 
 
-                                                if (add1 = add2) {
-                                                    add = true;
-                                                }
-                                                if (sub1 = sub2) {
-                                                    sub = true;
-                                                }
-                                                if (mul1 = mul2) {
-                                                    mul = true;
-                                                }
-                                                if (div1 = div2) {
-                                                    div = true;
-                                                }
-                                                if (cons1 = cons2) {
-                                                    cons = true;
-                                                }
+                                                if (allIntergerCheck) {
 
-                                                int nextVlaue = 0;
-                                                if (add) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (sub) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (mul) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (div) {
-                                                    nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
-                                                }
-                                                if (cons) {
-                                                    nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
-                                                }
+                                                    String Opera = "";
 
-                                                Log.e("test", "next value is " + nextVlaue);
+                                                    boolean add = false;
+                                                    boolean sub = false;
+                                                    boolean mul = false;
+                                                    boolean div = false;
+                                                    boolean cons = false;
 
-                                                textView.setText("The next value is : " + nextVlaue);
-                                                textView2.setText("Operation is : " + Opera);
+                                                    boolean add1 = false;
+                                                    boolean sub1 = false;
+                                                    boolean mul1 = false;
+                                                    boolean div1 = false;
+                                                    boolean cons1 = false;
 
+                                                    boolean add2 = false;
+                                                    boolean sub2 = false;
+                                                    boolean mul2 = false;
+                                                    boolean div2 = false;
+                                                    boolean cons2 = false;
+
+                                                    int n = 0;
+                                                    int cosst = 0;
+
+                                                    int listSize = myIntList.size();
+
+                                                    for (String x : myIntList) {
+                                                        Log.e("test", "loop" + x);
+                                                    }
+
+                                                    if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        add = true;
+                                                        Opera = "Addtion";
+                                                        Log.e("test", "operation +");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        sub = true;
+                                                        Opera = "Subtraction";
+                                                        Log.e("test", "operation -");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        mul = true;
+                                                        Opera = "Multiplication";
+                                                        Log.e("test", "operation *");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        div = true;
+                                                        Opera = "Division";
+                                                        Log.e("test", "operation /");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                                                        cons = true;
+                                                        Opera = "Constant";
+                                                        cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                                                        Log.e("test", "operation cons");
+                                                    }
+
+                                                    n = 1;
+                                                    if (Integer.valueOf(myIntList.get(n)) + Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        add2 = true;
+                                                        Opera = "Addtion";
+                                                        Log.e("test", "operation +");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        sub2 = true;
+                                                        Opera = "Subtraction";
+                                                        Log.e("test", "operation -");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) * Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        mul2 = true;
+                                                        Opera = "Multiplication";
+                                                        Log.e("test", "operation *");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) / Integer.valueOf(myIntList.get(n + 1)) == Integer.valueOf(myIntList.get(n + 2))) {
+                                                        div2 = true;
+                                                        Opera = "Division";
+                                                        Log.e("test", "operation /");
+                                                    } else if (Integer.valueOf(myIntList.get(n)) - Integer.valueOf(myIntList.get(n + 1)) == (Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n + 2)))) {
+                                                        cons2 = true;
+                                                        Opera = "Constant";
+                                                        cosst = Integer.valueOf(myIntList.get(n + 1)) - Integer.valueOf(myIntList.get(n));
+                                                        //Log.e("test", "operation cons value " +cosst );
+                                                        Log.e("test", "operation cons");
+                                                    }
+
+
+                                                    if (add1 = add2) {
+                                                        add = true;
+                                                    }
+                                                    if (sub1 = sub2) {
+                                                        sub = true;
+                                                    }
+                                                    if (mul1 = mul2) {
+                                                        mul = true;
+                                                    }
+                                                    if (div1 = div2) {
+                                                        div = true;
+                                                    }
+                                                    if (cons1 = cons2) {
+                                                        cons = true;
+                                                    }
+
+                                                    int nextVlaue = 0;
+                                                    if (add) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) + Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (sub) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) - Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (mul) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) * Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (div) {
+                                                        nextVlaue = Integer.valueOf(myIntList.get(myIntList.size() - 2)) / Integer.valueOf(myIntList.get(myIntList.size() - 1));
+                                                    }
+                                                    if (cons) {
+                                                        nextVlaue = (Integer.valueOf(myIntList.get(myIntList.size() - 1)) + cosst);
+                                                    }
+
+                                                    Log.e("test", "next value is " + nextVlaue);
+
+                                                    textView.setText("The next value is : " + nextVlaue);
+                                                    textView2.setText("Operation is : " + Opera);
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), "Input format ERROR - Can only contain Integer", Toast.LENGTH_SHORT).show();
+                                                }
 
                                             } else {
                                                 Toast.makeText(getApplicationContext(), "Input format ERROR - Enter 4 numbers separated by . Eg:- 2,4,6,10 ", Toast.LENGTH_SHORT).show();
@@ -718,6 +770,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception error) {
             error.printStackTrace();
         }
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        // only got here if we didn't return false
+        return true;
     }
 
 
